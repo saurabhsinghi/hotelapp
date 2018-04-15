@@ -44,7 +44,7 @@ When the application loads up it creates the necessary tables and inserts some t
 
 HOTEL_CONFIG
 ```
----+-------------+-----------+---------------+-------+--------+------+---------+----------------+----------+
++-----+----------+-----------+---------------+-------+--------+------+---------+----------------+----------+
 | ID  | HOTELNAME| ADDRESS   | CITY          | STATE | COUNTRY| ZIP  | ROOMCOUNT OVERBOOKINGLEVEL CUSTOMERID
 +-----+----------+-----------+---------------+-------+--------+------+---------+----------------+----------+
 | 100 | Hilton   | 123 H St. | San Francisco | CA    | USA    | 94105| 100     | 10.0           | HSF36901 |
