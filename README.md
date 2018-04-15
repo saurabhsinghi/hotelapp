@@ -10,7 +10,7 @@ Mini project to implement a system that allows a configured level of overbooking
    4. `docker build . -f  Dockerfile -t hotelapp` (This will create the docker image)
    5. `docker run -p 5000:8080 -t hotelapp` (This will run the application on port 5000)
    
-   O
+Quickly test if you can access the application by typing in `http://localhost:5000/hotelapp/` in the browser. You should see a welcome message - "Welcome to the Hotel App!"
    
    
 # Database
@@ -44,3 +44,4 @@ When the application loads up it creates the necessary tables and inserts some t
 
 
 # API
+
