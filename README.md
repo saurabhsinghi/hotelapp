@@ -76,17 +76,47 @@ HOTEL_RESERVATION
      Path variable:
       hotel_id : id of the hotel to be updated (integer)
      
-     Query String params: 
+     Query String params: All fields are required. 
        room_count: number of total rooms in the hotel (integer). Must be >=0
        overbooking_level: overbooking tolerance percentage (float). Must be between 0-100
 
-     Parameter content type: application/json   
+     Content type: application/json   
      
    Responses:
     Code:                             Description
+    ----                              -----------
     200                               Configuration successful.
-    400                               Invalid Input - Invalid param value(s).
+    400                               Invalid input - invalid param value(s).
     404                               Invalid Hotel {hotel_id}.Cannot set configuration.
   ```   
  
 2. For making reservations supplying Guest name and email, arrival and departure dates.
+
+```
+  Request: 
+     Type: POST
+     
+     URL: /hotelapp/v1/reservations/hotel/{hotelId}
+     
+     Path variable:
+      hotel_id : id of the hotel to be updated (integer). Required
+     
+     Body: All fields are required.     
+       {
+        "guestFirstName": {type: string},
+        "guestLastName": {type: string},
+        "guestEmail": {type: string},
+        "checkIn": {type: string, format: YYYY-MM-DD},
+        "checkOut": {type: string, format: YYYY-MM-DD}
+      }
+      
+     Content type: application/json   
+     
+   Responses:
+    Code:                             Description
+    ----                              -----------
+    200                               Reservation successful.
+    400                               Invalid input - invalid param value(s) / Missing one or more body params. 
+    404                               Invalid Hotel {hotel_id}.Cannot set configuration / Hotel room unavailable for the specified dates.
+    422                               Invalid date range. 
+  ```   
