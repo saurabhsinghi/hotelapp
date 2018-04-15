@@ -1,5 +1,5 @@
 <html>
 <body>
-	<h1>Hello!</h1>
+	<h1>Welcome to the Hotel App!</h1>
 </body>
 </html>

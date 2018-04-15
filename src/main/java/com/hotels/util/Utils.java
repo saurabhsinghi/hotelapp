@@ -1,10 +1,12 @@
 package com.hotels.util;
 
-/**
- * © 2015 – 2018. Talix, Inc. All rights reserved.
- *
- * @author: ssinghi
- */
+import com.hotels.exception.InvalidInputException;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Utils {
 
   public static final String CONFIG_SUCCESSFUL_MESSAGE = "Configuration successful";
@@ -34,4 +36,26 @@ public class Utils {
             +"       end) as value\n"
             +"       from X ,Y\n"
             +"   ) where value is not null\n";
+
+  public static long getTimeInMsFromString(String strDate) throws InvalidInputException{
+    long retVal = 0;
+    try{
+      Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+      retVal = date1.getTime();
+    }
+    catch (Exception e){
+     throw new InvalidInputException("Date string not in required format, YYYY-MM-DD ("+ strDate+")");
+    }
+    return retVal;
+  }
+
+  public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+      Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+  public static boolean validateEmail(String emailStr) {
+    Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+    return matcher.find();
+  }
+
 }
+

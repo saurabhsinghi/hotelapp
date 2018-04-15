@@ -1,6 +1,7 @@
 package com.hotels.controller;
 
 import com.hotels.exception.HotelNotFoundException;
+import com.hotels.exception.InvalidInputException;
 import com.hotels.service.ConfigService;
 import com.hotels.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * © 2015 – 2018. Talix, Inc. All rights reserved.
- *
- * @author: ssinghi
- */
 @Controller
 @RequestMapping("/v1/config")
 public class ConfigControllerV1 {
@@ -39,9 +35,13 @@ public class ConfigControllerV1 {
       responseMsg.put("message", Utils.CONFIG_SUCCESSFUL_MESSAGE);
       return new ResponseEntity(responseMsg, HttpStatus.OK);
     }
+    catch(InvalidInputException iie){
+      responseMsg.put("message", "Error: "+iie.getMessage());
+      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
     catch(HotelNotFoundException hnf){
       responseMsg.put("message", "Error: "+hnf.getMessage());
-      return new ResponseEntity(responseMsg, HttpStatus.EXPECTATION_FAILED);
+      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
     }
     catch (Exception exp){
       responseMsg.put("message", "Error: "+exp.getMessage());

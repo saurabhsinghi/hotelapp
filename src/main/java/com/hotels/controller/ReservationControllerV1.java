@@ -1,7 +1,6 @@
 package com.hotels.controller;
 
-import com.hotels.exception.HotelNotFoundException;
-import com.hotels.exception.RoomUnavailableForDatesException;
+import com.hotels.exception.*;
 import com.hotels.model.ReservationBean;
 import com.hotels.service.ReservationService;
 import com.hotels.util.Utils;
@@ -15,11 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * © 2015 – 2018. Talix, Inc. All rights reserved.
- *
- * @author: ssinghi
- */
 @Controller
 @RequestMapping("/v1/reservations")
 public class ReservationControllerV1 {
@@ -33,9 +27,21 @@ public class ReservationControllerV1 {
       responseMsg.put("message", Utils.RESERVATION_SUCCESSFUL_MESSAGE);
       return new ResponseEntity(responseMsg, HttpStatus.OK);
     }
+    catch(MissingInputException mie){
+      responseMsg.put("message", "Error: "+mie.getMessage());
+      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    catch(InvalidInputException iie){
+      responseMsg.put("message", "Error: "+iie.getMessage());
+      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    catch(InvalidDateRangeException ide){
+      responseMsg.put("message", "Error: "+ide.getMessage());
+      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
     catch(RoomUnavailableForDatesException rna){
       responseMsg.put("message", "Error: "+rna.getMessage());
-      return new ResponseEntity(responseMsg, HttpStatus.REQUESTED_RANGE_NOT_SATISFIABLE);
+      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
     }
     catch(Exception exp){
       responseMsg.put("message", "Error: "+exp.getMessage());

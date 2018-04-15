@@ -1,14 +1,10 @@
 package com.hotels.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-
-import java.sql.Timestamp;
-
-/**
- * © 2015 – 2018. Talix, Inc. All rights reserved.
- *
- * @author: ssinghi
- */
+import com.hotels.exception.InvalidDateRangeException;
+import com.hotels.exception.InvalidInputException;
+import com.hotels.exception.MissingInputException;
+import com.hotels.util.Utils;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReservationBean {
@@ -25,7 +21,7 @@ public class ReservationBean {
     return checkIn;
   }
 
-  public void setCheckIn(String checkIn) {
+  public void setCheckIn(String checkIn){
     this.checkIn = checkIn;
   }
 
@@ -33,7 +29,7 @@ public class ReservationBean {
     return checkOut;
   }
 
-  public void setCheckOut(String checkOut) {
+  public void setCheckOut(String checkOut){
     this.checkOut = checkOut;
   }
 
@@ -75,5 +71,41 @@ public class ReservationBean {
 
   public void setId(int id) {
     this.id = id;
+  }
+
+  public void validateInput(){
+
+    StringBuilder errMessage = new StringBuilder();
+    if(guestFirstName==null || guestFirstName.trim().equals("")){
+      errMessage.append("First name ");
+    }
+    if(guestLastName==null || guestLastName.trim().equals("")){
+      errMessage.append("Last name ");
+    }
+    if(guestEmail==null || guestEmail.trim().equals("")){
+      errMessage.append("Email ");
+    }
+    if(checkIn==null || checkIn.trim().equals("")){
+      errMessage.append("Check in date ");
+    }
+    if(checkOut==null || checkOut.trim().equals("")){
+      errMessage.append("Check out date ");
+    }
+
+    if(errMessage.length()>0){
+      throw new MissingInputException(errMessage.toString());
+    }
+    //Booking period cannot be in the past or today.
+    if(Utils.getTimeInMsFromString(checkIn)<=System.currentTimeMillis()
+        || Utils.getTimeInMsFromString(checkOut)<=System.currentTimeMillis()){
+      throw new InvalidDateRangeException(checkIn, checkOut);
+    }
+
+    if(Utils.getTimeInMsFromString(checkIn)>=Utils.getTimeInMsFromString(checkOut)){
+      throw new InvalidDateRangeException(checkIn, checkOut);
+    }
+    if(!Utils.validateEmail(guestEmail)){
+      throw new InvalidInputException("Email address: "+guestEmail);
+    }
   }
 }
