@@ -1,21 +1,16 @@
 package com.hotels.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hotels.exception.InvalidDateRangeException;
-import com.hotels.exception.InvalidInputException;
-import com.hotels.exception.MissingInputException;
-import com.hotels.exception.RoomUnavailableForDatesException;
 import com.hotels.model.ReservationBean;
 import junit.framework.Assert;
 import org.apache.tika.io.IOUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
-import java.sql.SQLIntegrityConstraintViolationException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -39,39 +34,39 @@ public class ReservationDaoTest {
     Assert.assertTrue(result == 0);
   }
 
-  @Test (expected = SQLIntegrityConstraintViolationException.class)
+  @Test (expected = DataIntegrityViolationException.class)
   public void testReserveRoomWithMissingCheckin() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_checkin.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
-    Assert.assertTrue(result==1);
+    Assert.assertTrue(result==0);
   }
 
-  @Test (expected = SQLIntegrityConstraintViolationException.class)
+  @Test (expected = DataIntegrityViolationException.class)
   public void testReserveRoomWithMissingCheckout() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_checkout.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
-    Assert.assertTrue(result==1);
+    Assert.assertTrue(result==0);
   }
 
-  @Test (expected = SQLIntegrityConstraintViolationException.class)
+  @Test (expected = DataIntegrityViolationException.class)
   public void testReserveRoomWithMissingEmail() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_email.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
-    Assert.assertTrue(result==1);
+    Assert.assertTrue(result==0);
   }
 
-  @Test (expected = SQLIntegrityConstraintViolationException.class)
+  @Test (expected = DataIntegrityViolationException.class)
   public void testReserveRoomWithMissingFName() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_firstname.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
-    Assert.assertTrue(result==1);
+    Assert.assertTrue(result==0);
   }
 
-  @Test (expected = SQLIntegrityConstraintViolationException.class)
+  @Test (expected = DataIntegrityViolationException.class)
   public void testReserveRoomWithMissingLName() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_lastname.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
-    Assert.assertTrue(result==1);
+    Assert.assertTrue(result==0);
   }
 
   @Test (expected = Exception.class)
