@@ -6,9 +6,9 @@ Mini project to implement a system that allows a configured level of overbooking
   Steps:
    1. Clone this repo
    2. cd to the installation directory
-   3. mvn package (This will run JUnit tests and prepare the war file)
-   4. docker build . -f  Dockerfile -t hotelapp (This will create the docker image)
-   5. docker run -p 5000:8080 -t hotelapp (This will run the application on port 5000)
+   3. `mvn package` (This will run JUnit tests and prepare the war file)
+   4. `docker build . -f  Dockerfile -t hotelapp` (This will create the docker image)
+   5. `docker run -p 5000:8080 -t hotelapp` (This will run the application on port 5000)
    
    O
    
