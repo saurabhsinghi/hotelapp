@@ -1,10 +1,9 @@
 # Hotel Reservation
 Mini project to implement a system that allows a configured level of overbooking.
 
-#Installation
+# Installation
   Prerequisites: Java 1.7+, Maven 3.5.0+, Docker. 
-
-Steps:
+  Steps:
    1. Clone this repo
    2. cd to the installation directory
    3. mvn package (This will run JUnit tests and prepare the war file)
