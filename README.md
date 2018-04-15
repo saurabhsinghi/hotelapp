@@ -65,4 +65,28 @@ HOTEL_RESERVATION
 +-----+---------+----------------+---------------+--------------+-------------------------+-------------------------+
 ```
 
-# API
+# APIs
+1. For hotel configuration, where we can set number of rooms and overbooking level.
+  ```
+  Request: 
+     Type: PUT
+     
+     URL: /v1/config/hotel/{hotel_id}?rooms={room_count}&ovrbkg_level={overbooking_level}
+     
+     Path variable:
+      hotel_id : id of the hotel to be updated (integer)
+     
+     Query String params: 
+       room_count: number of total rooms in the hotel (integer). Must be >=0
+       overbooking_level: overbooking tolerance percentage (float). Must be between 0-100
+
+     Parameter content type: application/json   
+     
+   Responses:
+    Code:                             Description
+    200                               Configuration successful.
+    400                               Invalid Input - Invalid param value(s).
+    404                               Invalid Hotel {hotel_id}.Cannot set configuration.
+  ```   
+ 
+2. For making reservations supplying Guest name and email, arrival and departure dates.
