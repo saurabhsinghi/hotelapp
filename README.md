@@ -83,11 +83,11 @@ HOTEL_RESERVATION
      Content type: application/json   
      
    Responses:
-    Code:                     Description
-    ----                      -----------
-    200                       Configuration successful.
-    400                       Invalid input - invalid param value(s).
-    404                       Invalid Hotel {hotel_id}.Cannot set configuration.
+    Code:             Description
+    ----              -----------
+    200               Configuration successful.
+    400               Invalid input - invalid param value(s).
+    404               Invalid Hotel {hotel_id}.Cannot set configuration.
   ```   
  
 2. For making reservations supplying guest name and email, arrival and departure dates.
@@ -96,7 +96,7 @@ HOTEL_RESERVATION
   Request: 
      Type: POST
      
-     URL: /hotelapp/v1/reservations/hotel/{hotelId}
+     URL: /v1/reservations/hotel/{hotelId}
      
      Path variable:
       hotel_id : id of the hotel to be updated (integer)
@@ -113,10 +113,10 @@ HOTEL_RESERVATION
      Content type: application/json   
      
    Responses:
-    Code:                     Description
-    ----                      -----------
-    200                       Reservation successful.
-    400                       Invalid input - invalid param value(s) / Missing one or more body params. 
-    404                       Invalid Hotel {hotel_id}.Cannot set configuration / Hotel room unavailable for the specified dates.
-    422                       Invalid date range. 
+    Code             Description
+    ----             -----------
+    200              Reservation successful.
+    400              Invalid input - invalid param value(s) / Missing one or more body params. 
+    404              Invalid Hotel {hotel_id}.Cannot set configuration / Hotel room unavailable for the specified dates.
+    422              Invalid date range. 
   ```   
