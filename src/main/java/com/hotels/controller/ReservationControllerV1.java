@@ -29,11 +29,11 @@ public class ReservationControllerV1 {
     }
     catch(MissingInputException mie){
       responseMsg.put("message", "Error: "+mie.getMessage());
-      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
+      return new ResponseEntity(responseMsg, HttpStatus.BAD_REQUEST);
     }
     catch(InvalidInputException iie){
       responseMsg.put("message", "Error: "+iie.getMessage());
-      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
+      return new ResponseEntity(responseMsg, HttpStatus.BAD_REQUEST);
     }
     catch(InvalidDateRangeException ide){
       responseMsg.put("message", "Error: "+ide.getMessage());
@@ -41,7 +41,7 @@ public class ReservationControllerV1 {
     }
     catch(RoomUnavailableForDatesException rna){
       responseMsg.put("message", "Error: "+rna.getMessage());
-      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
+      return new ResponseEntity(responseMsg, HttpStatus.NOT_FOUND);
     }
     catch(Exception exp){
       responseMsg.put("message", "Error: "+exp.getMessage());

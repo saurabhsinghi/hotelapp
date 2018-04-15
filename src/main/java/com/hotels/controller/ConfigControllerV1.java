@@ -37,11 +37,11 @@ public class ConfigControllerV1 {
     }
     catch(InvalidInputException iie){
       responseMsg.put("message", "Error: "+iie.getMessage());
-      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
+      return new ResponseEntity(responseMsg, HttpStatus.BAD_REQUEST);
     }
     catch(HotelNotFoundException hnf){
       responseMsg.put("message", "Error: "+hnf.getMessage());
-      return new ResponseEntity(responseMsg, HttpStatus.UNPROCESSABLE_ENTITY);
+      return new ResponseEntity(responseMsg, HttpStatus.NOT_FOUND);
     }
     catch (Exception exp){
       responseMsg.put("message", "Error: "+exp.getMessage());

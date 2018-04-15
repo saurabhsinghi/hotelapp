@@ -69,7 +69,7 @@ public class ReservationControllerV1Test {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(this.getClass().getResourceAsStream("/valid.json"))
                 ))
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isNotFound());
   }
 
   @Test
@@ -81,7 +81,7 @@ public class ReservationControllerV1Test {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(this.getClass().getResourceAsStream("/invalid_date_format.json"))
                 ))
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -129,7 +129,7 @@ public class ReservationControllerV1Test {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(this.getClass().getResourceAsStream("/invalid_email.json"))
                 ))
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -141,7 +141,7 @@ public class ReservationControllerV1Test {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(this.getClass().getResourceAsStream("/missing_email.json"))
                 ))
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -153,7 +153,7 @@ public class ReservationControllerV1Test {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(this.getClass().getResourceAsStream("/missing_firstname.json"))
                 ))
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -165,7 +165,7 @@ public class ReservationControllerV1Test {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(this.getClass().getResourceAsStream("/missing_lastname.json"))
                 ))
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -177,7 +177,7 @@ public class ReservationControllerV1Test {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(this.getClass().getResourceAsStream("/missing_checkin.json"))
                 ))
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
   }
 
   @Test
@@ -189,7 +189,7 @@ public class ReservationControllerV1Test {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(this.getClass().getResourceAsStream("/missing_checkout.json"))
                 ))
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
   }
 
   @Test

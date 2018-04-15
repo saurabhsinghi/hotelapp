@@ -44,7 +44,7 @@ public class ConfigControllerV1Test {
             put(url)
                 .contentType(MediaType.APPLICATION_JSON)
         )
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isNotFound());
 
   }
 
@@ -56,7 +56,7 @@ public class ConfigControllerV1Test {
             put(url)
                 .contentType(MediaType.APPLICATION_JSON)
         )
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
 
   }
 
@@ -68,7 +68,7 @@ public class ConfigControllerV1Test {
             put(url)
                 .contentType(MediaType.APPLICATION_JSON)
         )
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
 
   }
 
@@ -80,7 +80,7 @@ public class ConfigControllerV1Test {
             put(url)
                 .contentType(MediaType.APPLICATION_JSON)
         )
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
 
   }
 
@@ -92,7 +92,7 @@ public class ConfigControllerV1Test {
             put(url)
                 .contentType(MediaType.APPLICATION_JSON)
         )
-        .andExpect(status().isUnprocessableEntity());
+        .andExpect(status().isBadRequest());
 
   }
 

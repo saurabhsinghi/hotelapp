@@ -15,6 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("file:src/main/webapp/WEB-INF/hotel-servlet.xml")
@@ -37,35 +39,35 @@ public class ReservationDaoTest {
     Assert.assertTrue(result == 0);
   }
 
-  @Test
+  @Test (expected = SQLIntegrityConstraintViolationException.class)
   public void testReserveRoomWithMissingCheckin() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_checkin.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
     Assert.assertTrue(result==1);
   }
 
-  @Test
+  @Test (expected = SQLIntegrityConstraintViolationException.class)
   public void testReserveRoomWithMissingCheckout() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_checkout.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
     Assert.assertTrue(result==1);
   }
 
-  @Test
+  @Test (expected = SQLIntegrityConstraintViolationException.class)
   public void testReserveRoomWithMissingEmail() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_email.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
     Assert.assertTrue(result==1);
   }
 
-  @Test
+  @Test (expected = SQLIntegrityConstraintViolationException.class)
   public void testReserveRoomWithMissingFName() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_firstname.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
     Assert.assertTrue(result==1);
   }
 
-  @Test
+  @Test (expected = SQLIntegrityConstraintViolationException.class)
   public void testReserveRoomWithMissingLName() throws Exception{
     ReservationBean bean = convertJSONtoBean("/missing_lastname.json");
     int result = reservationDao.reserveRoomInHotel(100, bean);
