@@ -90,7 +90,7 @@ HOTEL_RESERVATION
     404                               Invalid Hotel {hotel_id}.Cannot set configuration.
   ```   
  
-2. For making reservations supplying Guest name and email, arrival and departure dates.
+2. For making reservations supplying guest name and email, arrival and departure dates.
 
 ```
   Request: 
@@ -99,7 +99,7 @@ HOTEL_RESERVATION
      URL: /hotelapp/v1/reservations/hotel/{hotelId}
      
      Path variable:
-      hotel_id : id of the hotel to be updated (integer). Required
+      hotel_id : id of the hotel to be updated (integer)
      
      Body: All fields are required.     
        {
