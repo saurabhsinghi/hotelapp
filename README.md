@@ -2,7 +2,8 @@
 Mini project to implement a system that allows a configured level of overbooking.
 
 # Installation
-  Prerequisites: `Java 1.7+, Maven 3.5.0+, Docker`. 
+  Prerequisites: `Java 1.7+, Maven 3.5.0+, Docker` 
+  
   Steps:
    1. Clone this repo
    2. cd to the installation directory
