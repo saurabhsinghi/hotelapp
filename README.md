@@ -1,5 +1,5 @@
 # Hotel Reservation
-Mini project to implement a system that allows a configured level of overbooking.
+Mini java project to implement a system that allows a configured level of overbooking.
 
 # Installation
   Prerequisites: `java 1.7+, apache maven 3.5.0+ and docker` 
